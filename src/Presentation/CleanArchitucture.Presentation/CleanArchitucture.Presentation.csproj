@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -15,10 +15,6 @@
     <ProjectReference Include="..\..\Core\CleanArchitucture.Application\CleanArchitucture.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CleanArchitucture.Infrastructure.Persistance\CleanArchitucture.Infrastructure.Persistence.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CleanArchitucture.Infrastructure\CleanArchitucture.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

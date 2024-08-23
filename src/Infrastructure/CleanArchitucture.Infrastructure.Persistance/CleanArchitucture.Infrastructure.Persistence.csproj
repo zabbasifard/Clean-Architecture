@@ -15,7 +15,6 @@
     <Folder Include="Migration\" />
     <Folder Include="Extensions\" />
     <Folder Include="Interceptor\" />
-    <Folder Include="UnitOfWork\" />
   </ItemGroup>
 
   <ItemGroup>

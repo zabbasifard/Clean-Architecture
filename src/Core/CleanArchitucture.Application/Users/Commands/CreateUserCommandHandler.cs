@@ -1,32 +1,26 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CleanArchitecture.Domain.Entities;
+using CleanArchitucture.Application.Common;
+using MediatR;
 
 namespace CleanArchitucture.Application.Users.Commands
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
+    public class CreateUserCommandHandler(IApplicationUnitOfWork unitOfWork) : IRequestHandler<CreateUserCommand, Guid>
     {
-        private readonly IApplicationUnitOfWork _unitOfWork;
+        private readonly IApplicationUnitOfWork _unitOfWork = unitOfWork;
 
-        public CreateUserCommandHandler(IApplicationUnitOfWork unitOfWork)
+        public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            _unitOfWork = unitOfWork;
-        }
-
-        public Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
-        {
-            var user = new CreateUserCommand
+            var user = new User
             {
                 UserName = request.UserName,
                 Email = request.Email,
-                FistName = request.FistName,
+                FirstName = request.FirstName,
                 LastName = request.LastName,
             };
 
-
+            _unitOfWork.Users.Add(user);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+            return user.Id;
         }
     }
 }
